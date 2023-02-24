@@ -63,7 +63,7 @@ const Homepage = () => {
   ];
 
   return (
-    <>
+    <div className="searchBar">
       <SearchBar />
       {ListRecipes.map((recipe, index) => (
         <div key={index}>
@@ -84,7 +84,7 @@ const Homepage = () => {
           </Card>
         </div>
       ))}
-    </>
+    </div>
   );
 };
 

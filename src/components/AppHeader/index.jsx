@@ -43,7 +43,7 @@ const AppHeader = ({ isLogged, setIsLogged }) => {
         <button onClick={handleClick}>Connexion</button>
       </header>
 
-      <h1>TEST</h1>
+      <h1>O'Délices</h1>
     </>
   );
 };

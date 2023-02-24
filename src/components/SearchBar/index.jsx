@@ -48,9 +48,6 @@ const SearchBar = () => {
     onSearchSubmit(ingredients);
   };
 
-  return()
-  
-}
-
-
+};
+ 
 export default SearchBar;

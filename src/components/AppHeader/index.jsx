@@ -11,7 +11,8 @@ const AppHeader = ({ isLogged, setIsLogged }) => {
   return (
     <>
       <header className="header">
-        <img src="logo-odelice.png" alt="logo O'délices" />
+        <img src="../../Integration/images/logo_odelices.png" alt="logo O'délices" />
+        <img src="../../Integration/images/logo_odelices2.png" alt="logo O'Delices" />
 
         <menu>
           <ul>

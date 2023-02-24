@@ -1,5 +1,6 @@
-import SearchBar from "../components/SearchBar"
-import { Card, Icon, Image } from 'semantic-ui-react'
+import SearchBar from "../components/SearchBar";
+import { Card, Image, Rating } from "semantic-ui-react";
+import "semantic-ui-css/semantic.min.css";
 
 const Homepage = () => {
   const ListRecipes = [
@@ -7,75 +8,84 @@ const Homepage = () => {
       name: "Poulet roti",
       average_rating: 4.5,
       author: "Jeanne Dupont",
-      image: <img src="./Integration/images/poulet_roti.jpg" alt="Poulet-roti" />
+      image:
+        "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cm9hc3QlMjBjaGlja2VufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
     },
     {
       name: "Lasagne",
       average_rating: 4.2,
       author: "Pierre Martin",
-      image: <img src="./Integration/images/lasagne.jpg" alt="Lasagne" />
+      image:
+        "https://images.unsplash.com/photo-1619894991209-9f9694be045a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
     },
     {
-      name: "Ratatouille",
-      average_rating: 4.7,
-      author: "Marie Durand",
-      image: <img src="./Integration/images/ratatouille.jpg" alt="Ratatouille" />
+      name: "Poulet roti",
+      average_rating: 4.5,
+      author: "Jeanne Dupont",
+      image:
+        "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cm9hc3QlMjBjaGlja2VufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
     },
     {
-      name: "Tarte aux pommes",
-      average_rating: 4.9,
-      author: "Lucie Dubois",
-      image: <img src="./Integration/images/tarte_aux_pommes.jpg" alt="Tarte_aux_pommes" />
+      name: "Lasagne",
+      average_rating: 4.2,
+      author: "Pierre Martin",
+      image:
+        "https://images.unsplash.com/photo-1619894991209-9f9694be045a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
     },
     {
-      name: "Salade Caesar",
-      average_rating: 4.3,
-      author: "Thomas Moreau",
-      image: <img src="./Integration/images/salade_cesar.jpg" alt="Salade Cesar" />
+      name: "Poulet roti",
+      average_rating: 2,
+      author: "Jeanne Dupont",
+      image:
+        "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cm9hc3QlMjBjaGlja2VufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
     },
     {
-      name: "Salade mexicaine",
-      average_rating: 4.9,
-      author: "Lucie Moreau",
-      image: <img src="./Integration/images/salade_mexicaine.jpg" alt="Salade Mexicaine" />
-    }
+      name: "Lasagne",
+      average_rating: 4.2,
+      author: "Pierre Martin",
+      image:
+        "https://images.unsplash.com/photo-1619894991209-9f9694be045a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+    },
+    {
+      name: "Poulet roti",
+      average_rating: 0,
+      author: "Jeanne Dupont",
+      image:
+        "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cm9hc3QlMjBjaGlja2VufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+    },
+    {
+      name: "Lasagne",
+      average_rating: 1.2,
+      author: "Pierre Martin",
+      image:
+        "https://images.unsplash.com/photo-1619894991209-9f9694be045a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+    },
   ];
 
   return (
     <>
       <SearchBar />
       {ListRecipes.map((recipe, index) => (
-
         <div key={index}>
-
           <Card>
-            <Image src='/images/avatar/large/matthew.png' wrapped ui={false} />
+            <Image src={recipe.image} wrapped ui={false} />
             <Card.Content>
-              <Card.Header>Matthew</Card.Header>
-              <Card.Meta>
-                <span className='date'>Joined in 2015</span>
-              </Card.Meta>
-              <Card.Description>
-                Matthew is a musician living in Nashville.
-              </Card.Description>
+              <Card.Header>{recipe.name}</Card.Header>
+              <Card.Description>{recipe.author}</Card.Description>
             </Card.Content>
             <Card.Content extra>
-              <a>
-                <Icon name='user' />
-                22 Friends
-              </a>
+              <Rating
+                icon="star"
+                defaultRating={Math.round(recipe.average_rating)}
+                maxRating={5}
+                disabled
+              />
             </Card.Content>
           </Card>
         </div>
-
       ))}
     </>
   );
 };
-
-{/* <h2>{recipe.name}</h2>
-        <h2>{recipe.image}</h2>
-        <h3>{recipe.average_rating}</h3>
-        <h3>{recipe.author}</h3> */}
 
 export default Homepage;

@@ -46,7 +46,7 @@ const SearchBar = ({recipeList, SetSearchResult}) => {
   }
   return (
     <>
-      <Form className="container" onSubmit={handleSubmit}>
+      <Form className="form_container" onSubmit={handleSubmit}>
         <Form.Field width={10} >
           <label>Recherchez vos ingredients</label>
           <input value={searchValue} onChange={handleChange} placeholder="Entrez vos ingrédients ..." />

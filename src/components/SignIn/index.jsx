@@ -2,9 +2,9 @@ import { getAPI } from "../../utils/api";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Signin() {
-  const { email, setEmail } = useState("");
-  const { password, setPassword } = useState("");
+const Signin = () => {
+  const [email, setEmail ] = useState("");
+  const [password, setPassword ]= useState("");
   const navigate = useNavigate();
 
   async function login(event) {

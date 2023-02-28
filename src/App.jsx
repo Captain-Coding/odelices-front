@@ -7,7 +7,7 @@ import Homepage from "./pages/HomePage";
 import Signup from "./pages/SignUp";
 import "./pages/Recipe";
 import "./pages/SignIn";
-// import "./pages/CreateRecipe";
+import "./pages/CreateRecipe";
 // import "./pages/UpdateRecipe";
 // import "./pages/Recipes";
  import "./pages/Profile";
@@ -19,6 +19,8 @@ import "./pages/SignIn";
 import Recipe from './components/Recipe';
 import Profile from './components/Profile';
 import SignIn from './components/SignIn';
+import SignUp from './components/SignUp';
+import CreateRecipe from './components/CreateRecipe';
 
 // Import React
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -40,8 +42,8 @@ const App = () => {
           <Route path="/recipe/:id" element={<Recipe />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/signin" element={<SignIn />} />
-          {/* 
-            <Route path="/recipe/create" element={<CreateRecipete />} />
+          <Route path="/recipe/create" element={<CreateRecipe />} />
+          {/*         
             <Route path="/recipe/update/:id" element={<UpdateRecipe />} />
             <Route path="/recipes" element={<AllRecipes />} />
             <Route path="/recipes/search" element={<FoundRecipes />} />

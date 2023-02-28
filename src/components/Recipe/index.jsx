@@ -38,7 +38,7 @@ const Recipe = () => {
 
         <div className="commentaires">
             <p>Pseudo du membre</p>
-            <textarea>Ajouter votre commentaire...</textarea>
+            <textarea value="texte"> Votre commentaire...</textarea>
             <button type="submit">Ajouter votre commentaire</button>
         </div>
 </div>

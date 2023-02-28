@@ -38,6 +38,7 @@ const HomePage = () => {
   return (
     <>
       <SearchBar recipeList={recipeList} SetSearchResult={SetSearchResult} />
+    <div className="card_container" >
       {searchResult.length < 1 &&
         recipeList.map((recipe, index) => (
           <div key={index}>
@@ -77,7 +78,9 @@ const HomePage = () => {
             </Card.Content>
           </Card>
         </div>
+
       ))}
+  </div>
     </>
   );
 };

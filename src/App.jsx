@@ -4,16 +4,22 @@ import "./App.css";
 import AppHeader from "./components/AppHeader";
 import AppFooter from "./components/AppFooter";
 import Homepage from "./pages/HomePage";
-import Signup from "./pages/SignUp";
-// import "./pages/SignIn";
-// import "./pages/Recipe";
-// import "./pages/CreateRecipe";
+import Signup from "./pages/SignUp/SignUp";
+import "./pages/Recipe";
+import "./pages/SignIn";
+import "./pages/CreateRecipe";
 // import "./pages/UpdateRecipe";
 // import "./pages/Recipes";
-// import "./pages/Profile";
+import "./pages/Profile";
 // import "./pages/Error";
 // import "./pages/SearchRecipes";
 // import "./pages/CGU";
+
+// Import Components
+import Recipe from "./components/Recipe";
+import Profile from "./components/Profile";
+import SignIn from "./components/SignIn";
+import CreateRecipe from "./components/CreateRecipe";
 
 // Import React
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -30,11 +36,12 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/signup" element={<Signup />} />
-          {/* <Route path="/signin" element={<SignIn />} />
-            <Route path="/recipe/:id" element={<Recipe />} />
-            <Route path="/recipe/create" element={<CreateRecipete />} />
+          <Route path="/recipe/:id" element={<Recipe />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/recipe/create" element={<CreateRecipe />} />
+          {/*         
             <Route path="/recipe/update/:id" element={<UpdateRecipe />} />
-            <Route path="/profile" element={<Profile />} />
             <Route path="/recipes" element={<AllRecipes />} />
             <Route path="/recipes/search" element={<FoundRecipes />} />
             <Route path="*" element={<Error />} />

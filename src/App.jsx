@@ -4,28 +4,25 @@ import "./App.css";
 import AppHeader from "./components/AppHeader";
 import AppFooter from "./components/AppFooter";
 import Homepage from "./pages/HomePage";
-import Signup from "./pages/SignUp";
+import Signup from "./pages/SignUp/SignUp";
 import "./pages/Recipe";
 import "./pages/SignIn";
 import "./pages/CreateRecipe";
 // import "./pages/UpdateRecipe";
 // import "./pages/Recipes";
- import "./pages/Profile";
+import "./pages/Profile";
 // import "./pages/Error";
 // import "./pages/SearchRecipes";
 // import "./pages/CGU";
 
 // Import Components
-import Recipe from './components/Recipe';
-import Profile from './components/Profile';
-import SignIn from './components/SignIn';
-import SignUp from './components/SignUp';
-import CreateRecipe from './components/CreateRecipe';
+import Recipe from "./components/Recipe";
+import Profile from "./components/Profile";
+import SignIn from "./components/SignIn";
+import CreateRecipe from "./components/CreateRecipe";
 
 // Import React
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-
 
 // == Composant
 const App = () => {

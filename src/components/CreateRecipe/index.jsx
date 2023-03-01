@@ -6,7 +6,7 @@ const createRecipe = () => {
         <label> Nom de la recette</label> <br />
         <input/> <br/>
 
-        <label>Entre les ingrdients de la recette</label>
+        <label>Entre les ingrédients de la recette</label>
             <ul>
                 <li><input/><br /></li>
                 <li><input/><br /></li>

@@ -10,7 +10,7 @@ function AppFooter() {
       <nav>
         <ul>
           <li>
-            <a to="/cgu">Conditions Générales d'utilisation</a>
+          <NavLink to="/cgu"> Conditions Générales d'utilisation </NavLink>
           </li>
         </ul>
       </nav>

@@ -1,28 +1,24 @@
 import { useState } from "react";
 // == Import page
+import "./styles/_reset.css"
 import "./App.css";
 import AppHeader from "./components/AppHeader";
 import AppFooter from "./components/AppFooter";
 import Homepage from "./pages/HomePage";
 import Signup from "./pages/SignUp/SignUp";
-import "./pages/Recipe";
-import "./pages/SignIn";
-import "./pages/CreateRecipe";
-// import "./pages/UpdateRecipe";
-// import "./pages/Recipes";
-import "./pages/Profile";
-// import "./pages/Error";
-// import "./pages/SearchRecipes";
-// import "./pages/CGU";
-
-// Import Components
-import Recipe from "./components/Recipe";
-import Profile from "./components/Profile";
-import SignIn from "./components/SignIn";
-import CreateRecipe from "./components/CreateRecipe";
+import Recipe from "./pages/Recipe";
+import SignIn from "./pages/SignIn";
+import CreateRecipe from "./pages/CreateRecipe";
+import UpdateRecipe from  "./pages/UpdateRecipe";
+import AllRecipes from "./pages/AllRecipes";
+import Profile from "./pages/Profile";
+import Error from "./pages/Error";
+import CGU from "./pages/CGU";
 
 // Import React
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+
 
 // == Composant
 const App = () => {
@@ -30,9 +26,8 @@ const App = () => {
 
   return (
     <>
-      <AppHeader isLogged={isLogged} setIsLogged={setIsLogged} />
-
       <Router>
+      <AppHeader isLogged={isLogged} setIsLogged={setIsLogged} />
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/signup" element={<Signup />} />
@@ -40,16 +35,14 @@ const App = () => {
           <Route path="/profile" element={<Profile />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/recipe/create" element={<CreateRecipe />} />
-          {/*         
-            <Route path="/recipe/update/:id" element={<UpdateRecipe />} />
-            <Route path="/recipes" element={<AllRecipes />} />
-            <Route path="/recipes/search" element={<FoundRecipes />} />
-            <Route path="*" element={<Error />} />
-            <Route path="/CGU" element={<CGU />} /> */}
+          <Route path="/*" element={<Error />} />
+          <Route path="/recipes" element={<AllRecipes />} />
+          <Route path="/CGU" element={<CGU />} />
+          <Route path="/recipe/update/:id" element={<UpdateRecipe />} />
         </Routes>
+      <AppFooter />
       </Router>
 
-      <AppFooter />
     </>
   );
 };

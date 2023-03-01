@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Signup = () => {
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -52,6 +54,24 @@ const Signup = () => {
 
       <form action="" onSubmit={register} className="signupForm">
         {errorMessage && <p>{errorMessage}</p>}
+
+        <label htmlFor="name">Entrez votre prénom: </label>
+        <input
+          type="firstname"
+          name="firstname"
+          placeholder="Pierre"
+          value={firstname}
+          onChange={(event) => setFirstname(event.target.value)}
+        />
+
+        <label htmlFor="name">Entrez votre nom: </label>
+        <input
+          type="lastname"
+          name="lastname"
+          placeholder="Dupont"
+          value={lastname}
+          onChange={(event) => setLastname(event.target.value)}
+        />
 
         <label htmlFor="name">Entrez votre email: </label>
         <input

@@ -1,28 +1,28 @@
 import axios from "axios"
 
-export const removeToken = function(){
+export const removeToken = function () {
     return localStorage.removeItem('token')
 }
 
-export const setToken = function(token){
+export const setToken = function (token) {
     return localStorage.setItem('token', token)
 }
 
-export const getToken = function(){
+export const getToken = function () {
     return localStorage.getItem('token')
 }
 
 
-export const getAPI = function(){
+export const getAPI = function () {
     const token = getToken()
     const headers = {}
 
-    if(token){
+    if (token) {
         headers.Authorization = `Bearer ${token}`
     }
 
     return axios.create({
-        baseURL: 'http://localhost:8080/',
+        baseURL: 'https://odelicesback-production.up.railway.app/api',
         headers
     })
 }

@@ -57,7 +57,7 @@ const Signup = () => {
 
         <label htmlFor="name">Entrez votre prénom: </label>
         <input
-          type="firstname"
+          type="text"
           name="firstname"
           placeholder="Pierre"
           value={firstname}
@@ -66,7 +66,7 @@ const Signup = () => {
 
         <label htmlFor="name">Entrez votre nom: </label>
         <input
-          type="lastname"
+          type="text"
           name="lastname"
           placeholder="Dupont"
           value={lastname}

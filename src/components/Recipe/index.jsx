@@ -38,6 +38,7 @@ const Recipe = () => {
         </ul>
         </div>
 
+        <button>Modifier la recette</button>
         <div className="commentaires">
             <p>Pseudo du membre</p>
             <textarea value="texte"> Votre commentaire...</textarea>

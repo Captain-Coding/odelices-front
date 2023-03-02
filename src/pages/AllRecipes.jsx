@@ -1,9 +1,21 @@
-import recipes from "../data/recipes";
+// import recipes from "../data/recipes";
 import "semantic-ui-css/semantic.min.css";
+import { useState, useEffect } from "react";
 import { Card, Image, Rating } from "semantic-ui-react";
+import { getAPI } from '../utils/api';
 
 
 const AllRecipes = () => {
+  const [recipes, setRecipes] = useState ([]);
+
+  
+    useEffect(() => {
+      getAPI().get('/recipes')
+        .then(response => setRecipes(response.data))
+        .catch(error => console.log(error));
+    }, []);
+
+  
     return (
         <>
         {/* <h1>Liste de toutes les recettes</h1> */}

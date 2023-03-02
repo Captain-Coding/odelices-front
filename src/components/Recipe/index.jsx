@@ -1,4 +1,5 @@
 import SearchBar from "../SearchBar";
+import { Link } from "react-router-dom";
 
 const Recipe = () => {
     return (
@@ -20,17 +21,14 @@ const Recipe = () => {
                 <h4>Etape 1</h4>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo egestas odio, a pulvinar sapien.</p>
             </li>
-
             <li>
                 <h4>Etape 2</h4>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo egestas odio, a pulvinar sapien.</p>
             </li>
-
             <li>
                 <h4>Etape 3</h4>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo egestas odio, a pulvinar sapien.</p>
             </li>
-
             <li>
                 <h4>Etape 4</h4>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo egestas odio, a pulvinar sapien.</p>
@@ -38,7 +36,10 @@ const Recipe = () => {
         </ul>
         </div>
 
-        <button>Modifier la recette</button>
+        <Link to="/recipes/update/id">
+            <button>Modifier la recette</button>
+            </Link>
+
         <div className="commentaires">
             <p>Pseudo du membre</p>
             <textarea value="texte"> Votre commentaire...</textarea>
@@ -48,5 +49,4 @@ const Recipe = () => {
 </>
 );
 } ;
-
 export default Recipe;

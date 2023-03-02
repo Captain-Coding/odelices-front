@@ -4,6 +4,7 @@ import "./styles/_reset.css"
 import "./App.css";
 import AppHeader from "./components/AppHeader";
 import AppFooter from "./components/AppFooter";
+import Navbar from "./components/Navbar";
 import Homepage from "./pages/HomePage";
 import Signup from "./pages/SignUp/SignUp";
 import Recipe from "./pages/Recipe";
@@ -28,17 +29,18 @@ const App = () => {
     <>
       <Router>
       <AppHeader isLogged={isLogged} setIsLogged={setIsLogged} />
+      <Navbar />
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/recipe/:id" element={<Recipe />} />
+          <Route path="/recipes/:id" element={<Recipe />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/signin" element={<SignIn />} />
-          <Route path="/recipe/create" element={<CreateRecipe />} />
+          <Route path="/recipes/create" element={<CreateRecipe />} />
           <Route path="/*" element={<Error />} />
           <Route path="/recipes" element={<AllRecipes />} />
           <Route path="/CGU" element={<CGU />} />
-          <Route path="/recipe/update/:id" element={<UpdateRecipe />} />
+          <Route path="/recipes/update/:id" element={<UpdateRecipe />} />
         </Routes>
       <AppFooter />
       </Router>

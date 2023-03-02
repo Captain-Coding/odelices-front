@@ -24,7 +24,6 @@ const AllRecipes = () => {
       {recipes.map((recipe, index) => (
         <div key={index}>
           <Card>
-          
           <Image src={recipe.picture} alt={recipe.name} />
           <Card.Content>
           <Card.Header>{recipe.name}</Card.Header>

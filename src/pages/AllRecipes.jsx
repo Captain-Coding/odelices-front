@@ -23,13 +23,22 @@ const AllRecipes = () => {
         <div className="card_AllRecipes">
       {recipes.map((recipe, index) => (
         <div key={index}>
-          <Card>
+          <Card className="myCard">
           <Image src={recipe.picture} alt={recipe.name} />
           <Card.Content>
           <Card.Header>{recipe.name}</Card.Header>
+          <Card.Description>{recipe.pseudo}</Card.Description>
           </Card.Content>
           <Card.Content>
           <Card.Description>{recipe.description}</Card.Description>
+          </Card.Content>
+          <Card.Content extra>
+          <Rating
+                  icon="star"
+                  defaultRating={Math.round(recipe.avg_rate)}
+                  maxRating={5}
+                  disabled
+                />
           </Card.Content>
           </Card>
         </div>   

@@ -1,43 +1,43 @@
-// import { useState, useEffect } from "react";
-// import { Link } from "react-router-dom";
-// import { getAPI } from '../../utils/api';
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { getAPI } from '../../utils/api';
 
-// const Recipe = () => {
-//     // const [recipes, setRecipes] = useState([]);
+const Recipe = () => {
+    const [recipe, setRecipe] = useState([]);
 
-//     // useEffect(() => {
-//     //     getAPI().get('/recipes/:id')
-//     //         .then(response => setRecipe(response.data))
-//     //         .catch(error => console.log(error));
-//     // }, []);
+    useEffect(() => {
+        getAPI().get('/recipes/1')
+            .then(response => setRecipe(response.data))
+            .catch(error => console.log(error));
+    }, []);
 
 
-//      return (
-//          <>
-//          <Link to="/recipes/update/id">
-//             <button>Modifier la recette</button>
-//         </Link>
+     return (
+         <>
+         <Link to="/recipes/update/1">
+            <button>Modifier la recette</button>
+        </Link>
 
-//         <div className="commentaires">
-//             <p>Pseudo du membre</p>
-//             <textarea value="texte"> Votre commentaire...</textarea>
-//             <button type="submit">Ajouter votre commentaire</button>
-//         </div>
+        <div className="commentaires">
+            <p>Pseudo du membre</p>
+            <textarea value="texte"> Votre commentaire...</textarea>
+            <button type="submit">Ajouter votre commentaire</button>
+        </div>
         
-//            <div className="recipe">
-//          <img src={recipes.picture} alt={recipes.name} /> 
+           <div className="recipe">
+         <img src={recipe.picture} alt={recipe.name} /> 
                    
-//               <img src={recipe.picture} alt={recipe.name} />    
-//               <h2>{recipe.name}</h2>
-//               <p>{recipe.description}</p>
-//               <p>{recipe.steps}</p> 
+              <img src={recipe.picture} alt={recipe.name} />    
+              <h2>{recipe.name}</h2>
+              <p>{recipe.description}</p>
+              <p>{recipe.steps}</p> 
         
             
-//          </div> 
+         </div> 
 
         
-// </>
-// );
-// };
+</>
+);
+};
 
-// export default Recipe;
+export default Recipe;

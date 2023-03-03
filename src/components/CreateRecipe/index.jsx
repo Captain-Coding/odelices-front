@@ -1,10 +1,11 @@
 const createRecipe = () => {
+    
     return (
         <>
         <h1>Créer ta recette</h1>
    <form action="submit" method="post" >
         <label> Nom de la recette</label> <br />
-        <input/> <br/>
+        <input value={recipe.name}/> <br/>
 
         <label>Entre les ingrédients de la recette</label>
             <ul>

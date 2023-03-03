@@ -20,13 +20,11 @@ const Signin = () => {
 
 
     try {
-      const resp = await getAPI().post("/auth/signin", {
-        method: "POST",
-        data: {
+      const resp = await getAPI().post("/auth/login", {
         email,
         password,
-    },
       });
+
       navigate("/");
     } catch (error) {
       console.log("error", error);

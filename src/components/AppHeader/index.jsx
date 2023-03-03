@@ -1,6 +1,7 @@
 import "./style.scss";
 import { Link } from "react-router-dom";
 import { getToken } from "../../utils/api";
+import logo_odelices from "../../assets/images/logo_odelices.png";
 
 const AppHeader = ({ isLogged, setIsLogged }) => {
   const handleClick = () => {
@@ -14,10 +15,7 @@ const AppHeader = ({ isLogged, setIsLogged }) => {
         <div className="header__title-container"></div>
         <header className="header__title-container">
           <Link to="/">
-            <img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/883745b3-a6f9-4bba-ae0b-acc875ed3e6c/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230301%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230301T143528Z&X-Amz-Expires=86400&X-Amz-Signature=73e4c7e4dc4fb71b64a1a07afdeb56878c15aff5998ac22333b22d336444a34d&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Untitled.png%22&x-id=GetObject"
-              alt="logo O'délices"
-              className="logo"
-            />
+            <img src={logo_odelices} alt="logo O'Delices" className="logo" />
           </Link>
 
           <Link to="/">

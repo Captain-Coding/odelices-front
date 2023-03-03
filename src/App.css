@@ -58,12 +58,11 @@ input {
   
 }
 
-/* modification du css d'une card de semantic UI  
-.ui.card>.image {
+.myCard.ui.card>.image {
 height: 25em;
 object-fit: cover;
 object-position: center
-} */
+}
 
 @media only screen and (max-width: 665px){
   .signupForm {

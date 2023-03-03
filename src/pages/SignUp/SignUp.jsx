@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { getAPI } from "../../utils/api";
 
 const Signup = () => {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
   const [pseudo, setPseudo] = useState("");
 
   const [errorMessage, setErrorMessage] = useState("");
@@ -18,12 +19,12 @@ const Signup = () => {
     event.preventDefault();
 
     // valide le formulaire (aucun input ne doit être vide et les mdp doivent correspondrent)
-    if (!email || !password || !confirmPassword || !pseudo) {
+    if (!email || !password || !passwordConfirm || !pseudo) {
       setErrorMessage("Veuillez remplir tous les champs");
       return;
     }
 
-    if (password !== confirmPassword) {
+    if (password !== passwordConfirm) {
       setErrorMessage("les mots de passes ne correspondent pas");
       return;
     } else {
@@ -32,14 +33,17 @@ const Signup = () => {
 
     // requête pour enregistrer l'utilisateur en BDD
     try {
-      const resp = await axios("http://railway", {
-        method: "POST",
-        data: {
+      const resp = await getAPI().post("/members",{
           email,
           password,
+          passwordConfirm,
+          firstname,
+          lastname,
           pseudo,
-        },
+          picture:"test", 
       });
+      console.log(resp)
+
     } catch (error) {
       console.log(error);
     }
@@ -96,8 +100,8 @@ const Signup = () => {
           type="password"
           name="password"
           placeholder="mot de passe"
-          value={confirmPassword}
-          onChange={(event) => setConfirmPassword(event.target.value)}
+          value={passwordConfirm}
+          onChange={(event) => setPasswordConfirm(event.target.value)}
         />
 
         <label htmlFor="name">Entrez votre pseudo :</label>

@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getAPI } from "../utils/api";
+import { Link } from "react-router-dom";
 
 
 const UpdateRecipe = () => {
-    const [fields, setFields] = useState({})
+    const [recipeInfo, setRecipeInfo] = useState({})
     
     const navigate = useNavigate();
 
@@ -12,13 +13,16 @@ const UpdateRecipe = () => {
 
     useEffect(() => {
         getAPI().get(`/recipes/${id}`)
-            .then(response => setFields(response.data))
+            .then(response => {
+                setRecipeInfo(response.data)
+                console.log(response.data)
+            })
             .catch(error => console.log(error));
     }, []);
 
     const submit = (event) => {
         event.preventDefault();
-        getAPI().patch(`/recipes/${id}`, fields)
+        getAPI().patch(`/recipes/${id}`, recipeInfo)
         .then(response => navigate(`/recipes/${id}`))
         .catch(error => console.log(error));
     }
@@ -30,21 +34,25 @@ const UpdateRecipe = () => {
         <form action="submit" method="post" onSubmit={submit} className="updateRecipe">
         <label> Nom de la recette</label>
         <input 
-        value={fields.name}
+        value={recipeInfo.name}
         type="text"/>
 
         <label>Entre les ingrédients de la recette</label>
             <ul>
-                <li><input/></li>
+                <li><input
+                value={recipeInfo.ingredients}/></li>
                 <li><input/></li>
                 <li><input/></li>
                 <li><input/></li>
                 <li><input/></li>
             </ul>
+
         <label>Decrit les étapes</label> <br />
 
         <label>Etape 1</label> 
-        <input/>
+        <input 
+        value={recipeInfo.steps}
+        type="text" />
         <label>Etape 2</label> 
         <input/>
         <label>Etape 3</label> 
@@ -53,7 +61,9 @@ const UpdateRecipe = () => {
         <input/>
         <label>Photo de la recette</label>
         <input type="file" accept="image/*"/>
+        <Link to={`/recipes/${id}`}>
         <input type="submit" value="Ajouter la recette"/>
+        </Link>
     </form>
         </>
     )

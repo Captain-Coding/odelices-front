@@ -31,6 +31,7 @@ const Profile = () => {
     
     <div className="informations">
     
+        <button>Suprrimer votre profil</button>
         <h1>Mes informations</h1>
         <p>Nom : </p>
         <p>Prénom :  </p>

@@ -33,12 +33,12 @@ const AppHeader = ({ isLogged, setIsLogged }) => {
                     </>
                   ) : (
                     <>
-                      {/* <li>
+                      <li>
                       <a href="/signup">S'inscrire</a>
                     </li>
                     <li>
                       <a href="#">Connexion</a>
-                    </li> */}
+                    </li>
                     </>
                   )}
                 </>
@@ -49,8 +49,8 @@ const AppHeader = ({ isLogged, setIsLogged }) => {
             <Link to="/recipes"> Toutes les recettes </Link>
             <Link to="/signup"> <button>S'inscrire</button> </Link>
             <Link to="/signin"> <button>Connexion</button> </Link>
-            {/* <button onClick={handleClick}>s'inscrire</button>      
-        <button onClick={handleClick}>Connexion</button> */}
+            <button onClick={handleClick}>s'inscrire</button>      
+        <button onClick={handleClick}>Connexion</button>
           </div>
         </header>
 

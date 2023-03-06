@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { getAPI } from "../../utils/api";
 
 const Signup = () => {
@@ -27,9 +26,7 @@ const Signup = () => {
     if (password !== passwordConfirm) {
       setErrorMessage("les mots de passes ne correspondent pas");
       return;
-    } else {
-      setErrorMessage("");
-    }
+    } 
 
     // requête pour enregistrer l'utilisateur en BDD
     try {
@@ -39,8 +36,7 @@ const Signup = () => {
           passwordConfirm,
           firstname,
           lastname,
-          pseudo,
-          picture:"test", 
+          pseudo, 
       });
       console.log(resp)
 
@@ -98,7 +94,7 @@ const Signup = () => {
         <label htmlFor="name">Confirmez votre mot de passe :</label>
         <input
           type="password"
-          name="password"
+          name="passwordConfirm"
           placeholder="mot de passe"
           value={passwordConfirm}
           onChange={(event) => setPasswordConfirm(event.target.value)}
@@ -107,7 +103,7 @@ const Signup = () => {
         <label htmlFor="name">Entrez votre pseudo :</label>
         <input
           type="text"
-          name="name"
+          name="pseudo"
           placeholder="JeanBon67"
           value={pseudo}
           onChange={(event) => setPseudo(event.target.value)}

@@ -1,13 +1,28 @@
 import { Form } from 'semantic-ui-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from "axios";
+import { getAPI } from "../../utils/api";
+
+
+
 const SearchBar = ({recipeList, SetSearchResult}) => {
   const [searchValue, setSearchValue] = useState('')
   const [queriedIngredients, setQueriedIngredients] = useState([])
   const [filteredRecipe, setFilteredRecipe] = useState([])
-  const [ListRecipes, setListRecipes] = useState(recipeList)
+  const [ListRecipes, setListRecipes] = useState()
   const handleChange = (event) => {
     setSearchValue(event.target.value);
   }
+
+  useEffect(() => {
+    getAPI().get(`/recipes`)
+        .then(response => {
+          setListRecipes(response.data)
+            console.log(response.data)
+        })
+        .catch(error => console.log(error));
+}, []);
+
   // gére la recherche d'ingredient en mettant à jour la liste d'ingrédients rechecher grace à la methode
   // de recherche d'ingredient avec le nouveau tableau mis à jour.
   const handleSubmit = (event) =>{

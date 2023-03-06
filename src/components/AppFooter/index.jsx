@@ -9,7 +9,7 @@ function AppFooter() {
     <footer>
       <nav>
         <ul>
-          <li>
+          <li className="cgu">
           <NavLink to="/cgu"> Conditions Générales d'utilisation </NavLink>
           </li>
         </ul>

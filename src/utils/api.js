@@ -22,7 +22,7 @@ export const getAPI = function () {
     }
 
     return axios.create({
-        baseURL: 'https://odelicesback-production.up.railway.app/api',
+        baseURL: 'https://odelicesback-development.up.railway.app/api',
         headers
     })
 }

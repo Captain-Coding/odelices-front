@@ -19,13 +19,13 @@ const HomePage = () => {
   return (
     <>
       <SearchBar recipeList={recipeList} SetSearchResult={SetSearchResult} />
-      <div className="card_container" >
+      <div className="card_AllRecipes" >
         {searchResult.length < 1 &&
           recipeList.map((recipe, index) => (
             <div key={index}>
               <Link to={`/recipes/${recipe.id}`}>
-                <Card>
-                  <Image src={recipe.picture} wrapped ui={false} />
+                <Card className="myCard">
+                  <Image src={recipe.picture} />
                   <Card.Content>
                     <Card.Header>{recipe.name}</Card.Header>
                     <Card.Description>{recipe.pseudo}</Card.Description>
@@ -46,7 +46,7 @@ const HomePage = () => {
         {searchResult && searchResult.map((recipe, index) => (
           <div key={index}>
             <Link to={`/recipes/${recipe.id}`}>
-          <Card>
+          <Card className="myCard">
               <Image src={recipe.picture} wrapped ui={false} />
               <Card.Content>
                 <Card.Header>{recipe.name}</Card.Header>

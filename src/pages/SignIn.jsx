@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 const Signin = () => {
   const [email, setEmail ] = useState("");
   const [password, setPassword ]= useState("");
+  const [token, setToken] = useState("");
   const navigate = useNavigate();
 
   const [errorMessage, setErrorMessage] = useState("");
@@ -25,6 +26,12 @@ const Signin = () => {
         email,
         password,
       });
+      console.log(resp);
+      
+      const token = resp.data.token
+      setToken(token);
+      
+      
 
       navigate("/");
     } catch (error) {

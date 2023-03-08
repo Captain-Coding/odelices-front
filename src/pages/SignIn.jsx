@@ -1,12 +1,12 @@
-import { getAPI } from "../utils/api";
-import React, { useEffect, useState } from "react";
+import { getAPI, setToken } from "../utils/api";
+import { React, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-const Signin = () => {
-  const [email, setEmail ] = useState("");
-  const [password, setPassword ]= useState("");
-  const [token, setToken] = useState("");
+const Signin = ({setIsLogged}) => {
+  
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const [errorMessage, setErrorMessage] = useState("");
@@ -16,8 +16,8 @@ const Signin = () => {
 
 
     if (!email || !password) {
-        setErrorMessage("Veuillez remplir tous les champs");
-        return;
+      setErrorMessage("Veuillez remplir tous les champs");
+      return;
     }
 
 
@@ -27,11 +27,13 @@ const Signin = () => {
         password,
       });
       console.log(resp);
+
+      const token = resp.data.accessToken
       
-      const token = resp.data.token
-      setToken(token);
-      
-      
+      if(token){
+        setToken(token);
+        setIsLogged(true)
+      }
 
       navigate("/");
     } catch (error) {
@@ -43,9 +45,9 @@ const Signin = () => {
     <div>
       <h1>Connexion à votre compte</h1>
       <form action="" onSubmit={login} className="signinForm">
-      {errorMessage && <p>{errorMessage}</p>}
+        {errorMessage && <p>{errorMessage}</p>}
 
-      <label htmlFor="name">Mail :</label>
+        <label htmlFor="name">Mail :</label>
         <input
           type="email"
           name="email"
@@ -63,8 +65,8 @@ const Signin = () => {
 
         <button className="button_signin">Connexion</button>
       </form>
-      <Link to ={"/signup"}>
-      <p className="notEnregistred">Vous n'êtes pas encore inscrit?</p>
+      <Link to={"/signup"}>
+        <p className="notEnregistred">Vous n'êtes pas encore inscrit?</p>
       </Link>
     </div>
   );

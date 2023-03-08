@@ -1,6 +1,5 @@
 import { Form } from 'semantic-ui-react';
 import { useState, useEffect } from 'react';
-import axios from "axios";
 import { getAPI } from "../../utils/api";
 
 
@@ -8,20 +7,26 @@ import { getAPI } from "../../utils/api";
 const SearchBar = ({recipeList, SetSearchResult}) => {
   const [searchValue, setSearchValue] = useState('')
   const [queriedIngredients, setQueriedIngredients] = useState([])
-  const [filteredRecipe, setFilteredRecipe] = useState([])
-  const [ListRecipes, setListRecipes] = useState()
-  const handleChange = (event) => {
-    setSearchValue(event.target.value);
-  }
-
+  const [listIngredients, setListIngredients] = useState([])
+  
   useEffect(() => {
     getAPI().get(`/recipes`)
         .then(response => {
           setListRecipes(response.data)
             console.log(response.data)
         })
-        .catch(error => console.log(error));
+        .catch(error => console.log(error));  
+    // getAPI().get(`/ingredients`)
+    //     .then(res=> {
+    //       setListIngredients(res.data)
+    //       console.log(res.data)
+    //     })
 }, []);
+
+  const handleChange = (event) => {
+    setSearchValue(event.target.value);
+  }
+
 
   // gére la recherche d'ingredient en mettant à jour la liste d'ingrédients rechecher grace à la methode
   // de recherche d'ingredient avec le nouveau tableau mis à jour.
@@ -30,34 +35,27 @@ const SearchBar = ({recipeList, SetSearchResult}) => {
     if(searchValue.trim() === ""){  // trim pour eviter les espaces entré et les entré vide
       return
     }
-    const temp = [...queriedIngredients, searchValue]
+    const curentIngredient = listIngredients.filter((ingredient)=>{
+      ingredient.name == searchValue
+    })
+    const temp = [...queriedIngredients, curentIngredient]
+
     setSearchValue("")
-    setQueriedIngredients([...queriedIngredients, searchValue]);
-    handleIngredientSearch(temp);
+    setQueriedIngredients([...queriedIngredients, curentIngredient]);
+    handleIngredientSearch(temp); //on envoie temp plustot que queriedIngredients car l'etats actuel du state n'est pas encore a jour avec le nouvel ingredients.  
   }
   const removeIngedient = (i) =>{
-    let tempIngredients = [...queriedIngredients] // je fais une copie du tableau avec le spread opérator
-    tempIngredients.splice(i,1) // https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
+    let tempIngredients = [...queriedIngredients]             // je fais une copie du tableau avec le spread opérator
+    tempIngredients.splice(i,1)                               // https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
     setQueriedIngredients(tempIngredients);
     handleIngredientSearch(tempIngredients);
   }
-  const handleIngredientSearch = (ingredientsFromFields) =>{
-    const newList = ListRecipes.filter((recipe) => {
-      const FindByIngredient = recipe.ingredients.find((ingredient) => {
-         //return recipe.ingredients.find((ingredient) => { //!   écriture en ternaire : on return true ou false l'évaluation de l'éxpression plustot que de la stoquer dans une variable.
-        for(let i = 0; i < ingredientsFromFields.length; i++) {
-          if (ingredient.includes(ingredientsFromFields[i])){
-            return true
-          }
-        }
+  const handleIngredientSearch = (temp) =>{
+    getAPI().post(`/recipeWithIngredient`,{body:temp})
+      .then(res=>{
+        SetSearchResult(res.data);
+        console.log(res.data, "dit moi tout")
       })
-      //! ?true:false                                             Le return en question
-      if (FindByIngredient) {
-          return true
-      }
-    });
-    setFilteredRecipe(newList);
-    SetSearchResult(newList)
   }
   return (
     <>

@@ -37,6 +37,7 @@ const Signup = () => {
           firstname,
           lastname,
           pseudo, 
+          picture,
       });
       console.log(resp)
 
@@ -82,7 +83,8 @@ const Signup = () => {
           onChange={(event) => setEmail(event.target.value)}
         />
 
-        <label htmlFor="name">Entrez votre mot de passe :</label>
+        <label htmlFor="name">Entrez votre mot de passe </label>
+        
         <input
           type="password"
           name="password"
@@ -90,6 +92,7 @@ const Signup = () => {
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         />
+        <p> Le mot de passe doit contenir une majuscule et un chiffre </p>
 
         <label htmlFor="name">Confirmez votre mot de passe :</label>
         <input

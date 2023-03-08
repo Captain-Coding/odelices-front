@@ -4,7 +4,7 @@ import Recipe from "../components/Recipe";
 const RecipePage= () => {
     return (
         <>
-        <SearchBar/>
+        {/* <SearchBar/> */}
         <Recipe />
         </>
     )

@@ -1,9 +1,8 @@
 import Navbar from "../Navbar";
 import { Link } from "react-router-dom";
-import { getToken } from "../../utils/api";
 import logo_odelices from "../../assets/images/logo_odelices.png";
 import "./style.scss";
-import { useEffect } from "react";
+
 
 const AppHeader = ({ isLogged, setIsLogged }) => {
 

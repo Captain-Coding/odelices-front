@@ -7,13 +7,13 @@ import "./style.scss";
 function AppFooter() {
   return (
     <footer>
-      <nav>
-        <ul>
-          <li>
-            <a to="/cgu">Conditions Générales d'utilisation</a>
-          </li>
-        </ul>
-      </nav>
+
+      <ul>
+        <li className="cgu">
+          <NavLink to="/cgu"> Conditions Générales d'utilisation </NavLink>
+        </li>
+      </ul>
+
     </footer>
   );
 }

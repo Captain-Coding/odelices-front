@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { getAPI } from "../../utils/api";
 
 const Signup = () => {
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
   const [pseudo, setPseudo] = useState("");
 
   const [errorMessage, setErrorMessage] = useState("");
@@ -16,28 +18,29 @@ const Signup = () => {
     event.preventDefault();
 
     // valide le formulaire (aucun input ne doit être vide et les mdp doivent correspondrent)
-    if (!email || !password || !confirmPassword || !pseudo) {
+    if (!email || !password || !passwordConfirm || !pseudo) {
       setErrorMessage("Veuillez remplir tous les champs");
       return;
     }
 
-    if (password !== confirmPassword) {
+    if (password !== passwordConfirm) {
       setErrorMessage("les mots de passes ne correspondent pas");
       return;
-    } else {
-      setErrorMessage("");
-    }
+    } 
 
     // requête pour enregistrer l'utilisateur en BDD
     try {
-      const resp = await axios("http://railway", {
-        method: "POST",
-        data: {
+      const resp = await getAPI().post("/members",{
           email,
           password,
-          pseudo,
-        },
+          passwordConfirm,
+          firstname,
+          lastname,
+          pseudo, 
+          picture,
       });
+      console.log(resp)
+
     } catch (error) {
       console.log(error);
     }
@@ -53,6 +56,24 @@ const Signup = () => {
       <form action="" onSubmit={register} className="signupForm">
         {errorMessage && <p>{errorMessage}</p>}
 
+        <label htmlFor="name">Entrez votre prénom: </label>
+        <input
+          type="text"
+          name="firstname"
+          placeholder="Pierre"
+          value={firstname}
+          onChange={(event) => setFirstname(event.target.value)}
+        />
+
+        <label htmlFor="name">Entrez votre nom: </label>
+        <input
+          type="text"
+          name="lastname"
+          placeholder="Dupont"
+          value={lastname}
+          onChange={(event) => setLastname(event.target.value)}
+        />
+
         <label htmlFor="name">Entrez votre email: </label>
         <input
           type="email"
@@ -62,7 +83,8 @@ const Signup = () => {
           onChange={(event) => setEmail(event.target.value)}
         />
 
-        <label htmlFor="name">Entrez votre mot de passe :</label>
+        <label htmlFor="name">Entrez votre mot de passe </label>
+        
         <input
           type="password"
           name="password"
@@ -70,20 +92,21 @@ const Signup = () => {
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         />
+        <p> Le mot de passe doit contenir une majuscule et un chiffre </p>
 
         <label htmlFor="name">Confirmez votre mot de passe :</label>
         <input
           type="password"
-          name="password"
+          name="passwordConfirm"
           placeholder="mot de passe"
-          value={confirmPassword}
-          onChange={(event) => setConfirmPassword(event.target.value)}
+          value={passwordConfirm}
+          onChange={(event) => setPasswordConfirm(event.target.value)}
         />
 
         <label htmlFor="name">Entrez votre pseudo :</label>
         <input
           type="text"
-          name="name"
+          name="pseudo"
           placeholder="JeanBon67"
           value={pseudo}
           onChange={(event) => setPseudo(event.target.value)}

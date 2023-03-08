@@ -1,55 +1,66 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getToken } from "./utils/api";
+import jwt_decode from "jwt-decode";
+
 // == Import page
+import "./styles/_reset.css"
 import "./App.css";
 import AppHeader from "./components/AppHeader";
 import AppFooter from "./components/AppFooter";
+
 import Homepage from "./pages/HomePage";
 import Signup from "./pages/SignUp/SignUp";
-import "./pages/Recipe";
-import "./pages/SignIn";
-import "./pages/CreateRecipe";
-// import "./pages/UpdateRecipe";
-// import "./pages/Recipes";
-import "./pages/Profile";
-// import "./pages/Error";
-// import "./pages/SearchRecipes";
-// import "./pages/CGU";
-
-// Import Components
-import Recipe from "./components/Recipe";
-import Profile from "./components/Profile";
-import SignIn from "./components/SignIn";
-import CreateRecipe from "./components/CreateRecipe";
+import Recipe from "./pages/Recipe";
+import SignIn from "./pages/SignIn";
+import CreateRecipe from "./pages/CreateRecipe";
+import UpdateRecipe from "./pages/UpdateRecipe";
+import AllRecipes from "./pages/AllRecipes";
+import Profile from "./pages/Profile";
+import Error from "./pages/Error";
+import CGU from "./pages/CGU";
 
 // Import React
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import SearchBar from "./components/SearchBar";
+
+
 
 // == Composant
 const App = () => {
   const [isLogged, setIsLogged] = useState(false);
+  const [token, setToken] = useState(null);
+  useEffect(() => {
+    let token = getToken()
+    if (token && typeof token == "string") {
 
+      let decrypted = jwt_decode(token)
+
+      setIsLogged(true);
+      setToken(token);
+
+    }
+  }, [])
+  console.log(isLogged, "isLoggedFromHome? ")
   return (
     <>
-      <AppHeader isLogged={isLogged} setIsLogged={setIsLogged} />
-
       <Router>
+        <AppHeader isLogged={isLogged} setIsLogged={setIsLogged} />
+
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/recipe/:id" element={<Recipe />} />
+          <Route path="/recipes/:id" element={<Recipe />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/recipe/create" element={<CreateRecipe />} />
-          {/*         
-            <Route path="/recipe/update/:id" element={<UpdateRecipe />} />
-            <Route path="/recipes" element={<AllRecipes />} />
-            <Route path="/recipes/search" element={<FoundRecipes />} />
-            <Route path="*" element={<Error />} />
-            <Route path="/CGU" element={<CGU />} /> */}
+          <Route path="/signin" element={<SignIn setIsLogged={setIsLogged} />} />
+          <Route path="/recipes/create" element={<CreateRecipe />} />
+          <Route path="/*" element={<Error />} />
+          <Route path="/recipes" element={<AllRecipes />} />
+          <Route path="/CGU" element={<CGU />} />
+          <Route path="/recipes/update/:id" element={<UpdateRecipe />} />
         </Routes>
+        <AppFooter />
       </Router>
 
-      <AppFooter />
     </>
   );
 };

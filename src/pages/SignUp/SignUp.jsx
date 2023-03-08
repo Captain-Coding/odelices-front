@@ -9,6 +9,7 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [pseudo, setPseudo] = useState("");
+  const [picture, setPicture] = useState ("");
 
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -55,6 +56,14 @@ const Signup = () => {
 
       <form action="" onSubmit={register} className="signupForm">
         {errorMessage && <p>{errorMessage}</p>}
+ 
+        <label htmlFor="picture">Mettez le lien de votre photo</label>
+        <input
+         type="text"
+         name="picture"
+         value={picture}
+         onChange={(event) => setPicture (event.target.value)}
+         /> 
 
         <label htmlFor="name">Entrez votre prénom: </label>
         <input

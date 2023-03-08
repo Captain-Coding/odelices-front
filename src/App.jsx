@@ -28,15 +28,11 @@ import SearchBar from "./components/SearchBar";
 // == Composant
 const App = () => {
   const [isLogged, setIsLogged] = useState(false);
-  const [token, setToken] = useState(null);
   useEffect(() => {
     let token = getToken()
     if (token && typeof token == "string") {
 
-      let decrypted = jwt_decode(token)
-
       setIsLogged(true);
-      setToken(token);
 
     }
   }, [])
@@ -50,7 +46,7 @@ const App = () => {
           <Route path="/" element={<Homepage />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/recipes/:id" element={<Recipe />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<Profile setIsLogged={setIsLogged}/>} />
           <Route path="/signin" element={<SignIn setIsLogged={setIsLogged} />} />
           <Route path="/recipes/create" element={<CreateRecipe />} />
           <Route path="/*" element={<Error />} />

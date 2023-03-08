@@ -37,9 +37,9 @@ const Profile = () => {
 
                 <button>Suprrimer votre profil</button>
                 <h1>Mes informations</h1>
-                <p>{member.lastname}</p>
-                <p>{member.firstname}</p>
-                <p>{member.pseudo}</p>
+                <p>Nom : {member.lastname}</p>
+                <p>Prénom : {member.firstname}</p>
+                <p>Pseudo : {member.pseudo}</p>
                 <button className="deconnexion" type="submit">Se déconnecter</button>
                 <div className="myRecipe">
                     <h2>Mes recettes</h2>

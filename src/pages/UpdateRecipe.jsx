@@ -22,10 +22,20 @@ const UpdateRecipe = () => {
 
     const submit = (event) => {
         event.preventDefault();
-        getAPI().patch(`/recipes/${id}`, recipeInfo)
+        getAPI().put(`/recipes/${id}`, recipeInfo)
         .then(response => navigate(`/recipes/${id}`))
         .catch(error => console.log(error));
     }
+
+    const handbleSubmit = (event) => {
+        event.preventDefault();
+        getAPI().post(`/recipes`)
+          .then(response => {
+            setRecipe(response.data)
+            console.log(response.data)
+          })
+          .catch(error => console.log(error))
+      };
 
     return (
         <>

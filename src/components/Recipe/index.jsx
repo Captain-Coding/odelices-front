@@ -1,7 +1,8 @@
 import { useState, useEffect, } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { getAPI } from '../../utils/api';
 import "./style.scss";
+import jwt_decode from "jwt-decode";
 
 const Recipe = () => {
     const [recipe, setRecipe] = useState({
@@ -12,6 +13,10 @@ const Recipe = () => {
 
     let { id } = useParams();
 
+    const navigate = useNavigate();
+  
+  
+  
     useEffect(() => {
         getAPI().get(`/recipes/${id}`)
             .then(response => {
@@ -20,6 +25,21 @@ const Recipe = () => {
             })
             .catch(error => console.log(error));
     }, []);
+
+    const handleDeleteRecipe = () => {
+        const confirmed = window.confirm("Etes-vous sûr de vouloir supprimer votre recette ?");
+        try {
+          if (confirmed) {
+            getAPI().delete(`/recipes/${id}`, { headers: { Authorization: `Bearer ${localStorage.token}` } })
+              .then(response => {
+                console.log(response.data)               
+              })
+            navigate("/profile");
+          }
+        } catch (error) {
+          console.log("error", error);
+        }
+      }
 
     // je nettoie la string des /, {}, .,
     const cleanString = (steps) => {
@@ -39,6 +59,9 @@ const Recipe = () => {
             <Link to={`/recipes/update/${id}`}>
                 <button>Modifier la recette</button>
             </Link>
+
+            <button className='deleteRecipe' onClick={handleDeleteRecipe}>Suprrimer cette recette</button>
+
             <div className="recipe">
                 <h2>{recipe.name}</h2>
                 <p>{recipe.description}</p>

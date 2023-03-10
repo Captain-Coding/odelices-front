@@ -48,7 +48,7 @@ const Recipe = () => {
         picture: recipe.picture,
         member_id: decodedToken.id
       });
-
+      
       console.log(result)
     } catch (error) { console.log(error) }
   }

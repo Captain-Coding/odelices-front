@@ -1,8 +1,7 @@
 import { useState, useEffect, } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import { getAPI } from '../../utils/api';
+import { getAPI, getTokenData } from '../../utils/api';
 import "./style.scss";
-import jwt_decode from "jwt-decode";
 
 const Recipe = () => {
     const [recipe, setRecipe] = useState({
@@ -10,6 +9,7 @@ const Recipe = () => {
         ingredients: [],
         steps: "",
     });
+    const [tokenData, setTokenData] = useState(getTokenData());
 
     let { id } = useParams();
 
@@ -52,15 +52,14 @@ const Recipe = () => {
         return steps
     }
 
-
     return (
         <>
 
-            <Link to={`/recipes/update/${id}`}>
+            {tokenData.id== recipe.creator_id && <Link to={`/recipes/update/${id}`}>
                 <button>Modifier la recette</button>
-            </Link>
+            </Link>}
 
-            <button className='deleteRecipe' onClick={handleDeleteRecipe}>Suprrimer cette recette</button>
+            {tokenData.id== recipe.creator_id && <button className='deleteRecipe' onClick={handleDeleteRecipe}>Suprrimer cette recette</button>}
 
             <div className="recipe">
                 <h2>{recipe.name}</h2>

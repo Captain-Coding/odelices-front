@@ -55,11 +55,11 @@ const Recipe = () => {
     return (
         <>
 
-            {tokenData.id== recipe.creator_id && <Link to={`/recipes/update/${id}`}>
+            {tokenData?.id== recipe.creator_id && <Link to={`/recipes/update/${id}`}>
                 <button>Modifier la recette</button>
             </Link>}
 
-            {tokenData.id== recipe.creator_id && <button className='deleteRecipe' onClick={handleDeleteRecipe}>Suprrimer cette recette</button>}
+            {tokenData?.id== recipe.creator_id && <button className='deleteRecipe' onClick={handleDeleteRecipe}>Suprrimer cette recette</button>}
 
             <div className="recipe">
                 <h2>{recipe.name}</h2>

@@ -79,17 +79,17 @@ const Recipe = () => {
                 <h2>Etape de la recette :</h2>
                 <ol className="steps">
                     {cleanString(recipe.steps).map((step, index) => (
-                        <li>{index + 1}. {step}</li>
+                        <li key={step}>{index + 1}. {step}</li>
                     ))}
                 </ol>
 
             </div>
 
-            <div className="commentaires">
+            {/* <div className="commentaires">
                 <p>Pseudo du membre</p>
                 <textarea value="texte"> Votre commentaire...</textarea>
                 <button type="submit">Ajouter votre commentaire</button>
-            </div>
+            </div> */}
 
         </>
     );

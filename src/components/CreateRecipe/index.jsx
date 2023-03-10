@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getAPI, getToken } from '../../utils/api';
 import jwt_decode from 'jwt-decode'
 
@@ -14,6 +14,7 @@ const Recipe = () => {
   });
 
   const [errorMessage, setErrorMessage] = useState('')
+  const navigate = useNavigate();
 
   // fonction qui permet de modifier la valeur des inputs pour en faire des champs contrôlés.
   const handleChange = (event) => {
@@ -48,25 +49,28 @@ const Recipe = () => {
         picture: recipe.picture,
         member_id: decodedToken.id
       });
-      
-      console.log(result)
-    } catch (error) { console.log(error) }
+      console.log(result.data[0].id)
+
+      const recipeId = result.data[0].id;
+      navigate (`/recipes/${recipeId}`);
+        //  window.location.href = `/recipes/${recipeId}`
+
+    }catch (error) {console.log(error)}
   }
+    return (
+      <>
+        <h1>Créer ta recette</h1>
+        <form action="" onSubmit={createRecipe} className="formCreateRecipe">
+          <label htmlFor="name"> Nom de la recette</label>
+          <input type="text" id="name" value={recipe.name} onChange={(event) => handleChange(event)} />
 
-  return (
-    <>
-      <h1>Créer ta recette</h1>
-      <form action="" onSubmit={createRecipe} className="formCreateRecipe">
-        <label htmlFor="name"> Nom de la recette</label>
-        <input type="text" id="name" value={recipe.name} onChange={(event) => handleChange(event)} />
+          <label htmlFor="description"> Description de la recette</label>
+          <textarea value={recipe.description} id="description" onChange={(event) => handleChange(event)} ></textarea>
 
-        <label htmlFor="description"> Description de la recette</label>
-        <textarea value={recipe.description} id="description" onChange={(event) => handleChange(event)} ></textarea>
+          <label htmlFor="steps"> Les étapes de la recette</label>
+          <textarea value={recipe.steps} id="steps" onChange={(event) => handleChange(event)} ></textarea>
 
-        <label htmlFor="steps"> Les étapes de la recette</label>
-        <textarea value={recipe.steps} id="steps" onChange={(event) => handleChange(event)} ></textarea>
-
-        {/* <label>Entre les ingrédients de la recette</label>
+          {/* <label>Entre les ingrédients de la recette</label>
         <ul>
           <li><input /></li>
           <li><input /></li>
@@ -75,7 +79,7 @@ const Recipe = () => {
           <li><input /></li>
         </ul> */}
 
-        {/* {cleanString(recipe.steps).map(step => (
+          {/* {cleanString(recipe.steps).map(step => (
           <input>{step}</input>
         ))}
 
@@ -90,16 +94,13 @@ const Recipe = () => {
         <label htmlFor="step 4">Etape 4</label>
         <input type="text" value={recipe.steps} onChange={(event) => setSteps({ ...recipe, steps: event.target.value })} /> */}
 
-        <label htmlFor="picture">Photo de la recette</label>
-        <input type="text" id="picture" name="picture" value={recipe.picture} onChange={(event) => handleChange(event)} />
-        <p>{errorMessage}</p>
-        <input type="submit" value="Ajouter la recette" />
-      </form>
-    </>
-  )
-};
+          <label htmlFor="picture">Photo de la recette</label>
+          <input type="text" id="picture" name="picture" value={recipe.picture} onChange={(event) => handleChange(event)} />
+          <p>{errorMessage}</p>
+          <input type="submit" value="Ajouter la recette" />
+        </form>
+      </>
+    )
+  };
 
 export default Recipe;
-
-
-

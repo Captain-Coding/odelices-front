@@ -86,7 +86,7 @@ const UpdateRecipe = () => {
 
             <form onSubmit={handleSubmitIngredient}>
                 <label htmlFor="name"> Nom de la recette</label>
-                <input type="text" id="name" value={recipeInfo.name} onChange={(event) => handleChange(event, setRecipeInfo)} min="1" max="100" required />
+                <input type="text" id="name" value={recipeInfo.name} onChange={(event) => handleChange(event, setRecipeInfo)} />
 
                 <label htmlFor="description"> Description de la recette</label>
                 <textarea value={recipeInfo.description} id="description" onChange={(event) => handleChange(event, setRecipeInfo)} ></textarea>

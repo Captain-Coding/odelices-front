@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getAPI } from "../utils/api";
 import { Link } from "react-router-dom";
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 
 
 const UpdateRecipe = () => {
     const [recipeInfo, setRecipeInfo] = useState({})
-    
+    const [ingredients, setIngredients] = useState([])
     const navigate = useNavigate();
 
     let { id } = useParams(); 
@@ -15,6 +17,15 @@ const UpdateRecipe = () => {
         getAPI().get(`/recipes/${id}`)
             .then(response => {
                 setRecipeInfo(response.data)
+                console.log(response.data)
+            })
+            .catch(error => console.log(error));
+    }, []);
+
+    useEffect(() => {
+        getAPI().get("/ingredients")
+            .then(response => {
+                setIngredients(response.data)
                 console.log(response.data)
             })
             .catch(error => console.log(error));
@@ -75,6 +86,17 @@ const UpdateRecipe = () => {
         <input type="submit" value="Ajouter la recette"/>
         </Link>
     </form>
+
+    <form onSubmit={handbleSubmit}>
+    <Autocomplete
+        disablePortal
+        id="combo-box-demo"
+        options={ingredients}
+        sx={{ width: 300 }}
+        renderInput={(params) => <TextField {...params} label="Movie" />}
+        />
+    </form>
+
         </>
     )
 }

@@ -1,8 +1,8 @@
 import Profile from '../components/Profile';
 
-const Profil = () => {
+const Profil = ({setIsLogged}) => {
     return (
-        <Profile />
+        <Profile setIsLogged={setIsLogged}/>
     )
 }
 

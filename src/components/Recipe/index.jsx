@@ -23,12 +23,12 @@ const Recipe = () => {
 
     // je nettoie la string des /, {}, .,
     const cleanString = (steps) => {
-        console.log(steps)
         steps = steps.replaceAll('\"', '')
         steps = steps.replace('{', '')
         steps = steps.replace('}', '')
-        steps = steps.split('.,')
-
+        steps = steps.split(',')
+        
+        console.log('steps : ',steps)
         return steps
     }
 
@@ -46,7 +46,7 @@ const Recipe = () => {
 
                 <h2>Liste des ingrédients</h2>
                 <ul>
-                    {recipe.ingredients.map(ingredient => {
+                    {recipe.ingredients && recipe.ingredients.map(ingredient => {
                         return (
                             <li key={ingredient.name}>{ingredient.name} {ingredient.quantity} {ingredient.units}</li>
 
@@ -54,9 +54,9 @@ const Recipe = () => {
                     })}
                 </ul>
                 <h2>Etape de la recette :</h2>
-                <ol>
-                    {cleanString(recipe.steps).map(step => (
-                        <li>{step}</li>
+                <ol className="steps">
+                    {cleanString(recipe.steps).map((step, index) => (
+                        <li>{index + 1}. {step}</li>
                     ))}
                 </ol>
 
@@ -73,4 +73,13 @@ const Recipe = () => {
 };
 
 export default Recipe;
+
+
+
+
+
+
+
+
+
 

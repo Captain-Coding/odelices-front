@@ -19,8 +19,32 @@
   margin: auto;
 }
 
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 400px;
+}
 
+input {
+  display: block
+}
 
+.infoUser {
+  display: flex;
+  justify-content: space-around;
+}
+
+.informations {
+  width: 50%;
+  text-align: center;
+  border-right: 1px solid rgb(186, 186, 186);
+}
+
+.modification {
+  width: 50%;
+}
 h1 {
   text-align: center;
 }
@@ -104,10 +128,29 @@ footer {
   text-align: center;
 }
 
+
+/* CSS page Profil */
+.profilPage {
+  position: relative;
+  padding-top: 4rem;
+}
+
+.profilPage h1 {
+  margin-bottom: 4rem !important;
+}
+
+.deleteButton {
+  margin-left: 0;
+  position: absolute;
+  top: 0;
+  right: 2rem;
+}
+
 .PictureProfil {
   display: flex;
   justify-content: center;
   height: 200px;
+  margin-bottom: 2rem;
 }
 
 .modification {
@@ -118,8 +161,6 @@ footer {
   flex-direction: column;
 
   
-  width: 30%;
-  margin: auto;
   padding: 1rem;
 
   border-radius: 10px;
@@ -128,15 +169,34 @@ footer {
 }
 
 .myRecipe {
-  text-align: left;
+  border-top: 1px solid rgb(186, 186, 186);
+  padding-top: 2rem;
+  margin-top: 4rem;
+  position: relative;
 }
 
+.myRecipe h2 {
+  text-align: center;
+}
+
+.myRecipe a {
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+}
+
+/* FIN Css Page Profil */
 
 @media only screen and (max-width: 665px){
   .signupForm {
       width: 100%;
   }
 }
+
+/* page RECIPE detail */
+
+
+/* FIN page RECIPE detail */
 
 
 /* Formu */

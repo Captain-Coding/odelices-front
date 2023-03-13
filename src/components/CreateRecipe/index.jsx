@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getAPI, getToken } from '../../utils/api';
 import jwt_decode from 'jwt-decode'
 
@@ -14,7 +14,8 @@ const Recipe = () => {
   });
 
   const [errorMessage, setErrorMessage] = useState('')
-
+  const navigate = useNavigate();
+  
   // fonction qui permet de modifier la valeur des inputs pour en faire des champs contrôlés.
   const handleChange = (event) => {
     setRecipe((previousValue) => {
@@ -48,8 +49,9 @@ const Recipe = () => {
         picture: recipe.picture,
         member_id: decodedToken.id
       });
-
-      console.log(result)
+      const recipeId = result.data[0].id;
+      navigate (`/recipes/${recipeId}`);
+      
     } catch (error) { console.log(error) }
   }
 
